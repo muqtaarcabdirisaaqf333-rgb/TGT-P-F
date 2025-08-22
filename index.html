@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASH G10 - TOOYO GROUP TRADERS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <h1>MASH G10 - TOOYO GROUP TRADERS</h1>
+            <div class="header-info">
+                <span id="current-date"></span>
+                <span id="user-status">Online</span>
+            </div>
+        </header>
+
+        <!-- Financial Summary Section -->
+        <section class="financial-summary">
+            <div class="summary-card">
+                <div class="card-header">
+                    <h3>Cash on Hand</h3>
+                    <span class="card-icon">💰</span>
+                </div>
+                <div class="amount usd">USD <span id="cash-usd">48,510.00</span></div>
+                <div class="amount kes">KES <span id="cash-kes">-20,442,174.00</span></div>
+            </div>
+            
+            <div class="summary-card">
+                <div class="card-header">
+                    <h3>Receivable Cash</h3>
+                    <span class="card-icon">📥</span>
+                </div>
+                <div class="amount usd">USD <span id="receivable-usd">-166,540.00</span></div>
+                <div class="amount kes">KES <span id="receivable-kes">-21,568,074.00</span></div>
+            </div>
+            
+            <div class="summary-card">
+                <div class="card-header">
+                    <h3>Payable Cash</h3>
+                    <span class="card-icon">📤</span>
+                </div>
+                <div class="amount usd">USD <span id="payable-usd">215,050.00</span></div>
+                <div class="amount kes">KES <span id="payable-kes">1,125,900.00</span></div>
+            </div>
+        </section>
+
+        <!-- Clients Management Section -->
+        <section class="clients-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2><span id="clients-count">83</span> Clients</h2>
+                    <span class="subtitle">Manage your business clients</span>
+                </div>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="openClientModal()">
+                        <span>+</span> New Client
+                    </button>
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Search clients..." class="search-input">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <select id="status-filter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                    <button class="btn btn-export" onclick="exportToCSV()">
+                        <span>📊</span> Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Clients Table -->
+            <div class="table-container">
+                <table class="clients-table">
+                    <thead>
+                        <tr>
+                            <th>ACCOUNT</th>
+                            <th>NAME</th>
+                            <th>BALANCES</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clients-table-body">
+                        <!-- JavaScript will populate this -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Client Modal (Hidden by default) -->
+        <div id="client-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Add New Client</h3>
+                    <span class="close" onclick="closeClientModal()">&times;</span>
+                </div>
+                <form id="client-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="account-number">Account Number</label>
+                        <input type="text" id="account-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="client-name">Client Name</label>
+                        <input type="text" id="client-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="balance-usd">Balance USD</label>
+                        <input type="number" id="balance-usd" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="balance-kes">Balance KES</label>
+                        <input type="number" id="balance-kes" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="client-status">Status</label>
+                        <select id="client-status" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeClientModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Client</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
